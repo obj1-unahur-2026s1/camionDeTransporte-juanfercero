@@ -1,3 +1,5 @@
+import cosas.*
+
 object camion {
     const carga = []
     const tara = 1000

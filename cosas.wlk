@@ -17,7 +17,7 @@ object bumblebee {
   method transformarEnAuto() {
     esAuto = true
   }
-  method transformarEnCamion() {
+  method transformarEnRobot() {
     esAuto = false
   }
 }
@@ -55,6 +55,12 @@ object contenedorPortuario {
     }
     return salida
   }
+  method agregarCarga(cosa) {
+    carga.add(cosa)
+  }
+  method eliminarCarga(cosa) {
+    carga.remove(cosa)
+  }
 }
 
 object residuosRadioactivos {
@@ -69,4 +75,9 @@ object embalajeDeSeguridad {
     method cambiarObjeto(carga) {
         objeto = carga
     }
+}
+
+object arenaAGranel {
+    var property peso = 100
+    method peligrosidad() = 1
 }
