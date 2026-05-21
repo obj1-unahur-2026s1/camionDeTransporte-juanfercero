@@ -9,7 +9,6 @@ describe "group of test for cosas" {
     camion.subirCarga(contenedorPortuario)
     camion.subirCarga(embalajeDeSeguridad)
     embalajeDeSeguridad.cambiarObjeto(residuosRadioactivos)
-    residuosRadioactivos.peso(30)
     contenedorPortuario.agregarCarga(residuosRadioactivos)
     contenedorPortuario.agregarCarga(paqueteDeLadrillos)
     assert.that(camion.peso() == 1000 + 4 + 300 + 134 + 30)

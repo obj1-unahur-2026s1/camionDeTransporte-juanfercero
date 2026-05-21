@@ -2,6 +2,9 @@ object knightRider {
   method peso() = 500
   method peligrosidad() = 10
   method bulto() = 1
+  method ejecusionPorCarga(){
+
+  }
 }
 
 object bumblebee {
@@ -22,6 +25,9 @@ object bumblebee {
     esAuto = false
   }
   method bulto() = 1
+  method ejecusionPorCarga(){
+    self.transformarEnRobot()
+  }
 }
 
 object paqueteDeLadrillos {
@@ -43,6 +49,9 @@ object paqueteDeLadrillos {
     }
     return salida
   }
+  method ejecusionPorCarga(){
+    self.agregarLadrillos(12)
+  }
 }
 
 object bateriaAntiaerea {
@@ -56,6 +65,9 @@ object bateriaAntiaerea {
     tieneMisiles = false
   }
   method bulto() = if (tieneMisiles) 2 else 1
+  method ejecusionPorCarga(){
+        self.equiparMisiles()
+    }
 }
 
 object contenedorPortuario {
@@ -76,12 +88,24 @@ object contenedorPortuario {
     carga.remove(cosa)
   }
   method bulto() = 1 + carga.sum({c => c.bulto()})
+  method ejecusionPorCarga(){
+        carga.forEach({c => c.ejecusionPorCarga()})
+    }
 }
 
 object residuosRadioactivos {
-    var property peso = 500
+    var peso = 30
     method peligrosidad() = 200
+    method quitarPeso(cant) {
+        peso = peso - cant
+    }
+    method agregarPeso(cant) {
+        peso = peso + cant
+    }
     method bulto() = 1
+    method ejecusionPorCarga(){
+        self.agregarPeso(15)
+    }
 }
 
 object embalajeDeSeguridad {
@@ -92,10 +116,21 @@ object embalajeDeSeguridad {
         objeto = carga
     }
     method bulto() = 2
+    method ejecusionPorCarga(){
+    }
 }
 
 object arenaAGranel {
-    var property peso = 100
+    var peso = 100
     method peligrosidad() = 1
     method bulto() = 1
+    method quitarArena(cant) {
+        peso = peso - cant
+    }
+    method agregarArena(cant) {
+        peso = peso + cant
+    }
+    method ejecusionPorCarga(){
+        self.quitarArena(10)
+    }
 }
