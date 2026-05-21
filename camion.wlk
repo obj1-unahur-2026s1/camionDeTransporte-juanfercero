@@ -23,5 +23,8 @@ object camion {
     method primeraCosaPeligrosa() = cosasPeligrosas.first()
     method cosasPeligrosas() = cosasPeligrosas
     method estaExedidoDePeso() = self.peso() > pesoMaximoPermitido
-    method puedeCircularEnRuta() = !self.estaExedidoDePeso() && self.cosasPeligrosas().size() == 0
+    method puedeCircularEnRuta(peligrosidadPermitidaDelViaje) = !self.estaExedidoDePeso() && carga.all({c => c.peligrosidad() < peligrosidadPermitidaDelViaje})
+
+    method tieneAlgunaCosaEntre(pesoMin, pesoMax) = carga.any({c => c.peso() >= pesoMin && c.peso() <= pesoMax})
+    method cosaDeMayorPeso() = carga.max({c => c.peso()})
 }
